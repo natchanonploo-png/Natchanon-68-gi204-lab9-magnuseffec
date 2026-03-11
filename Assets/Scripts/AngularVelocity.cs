@@ -1,17 +1,20 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Angular : MonoBehaviour
+public class AngularVelocity : MonoBehaviour
 {
-    public float angularSpeed = 5f;
+    public float angularSpeed;
+
     private Rigidbody rb;
+    
     void Start()
     {
-       rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    
+    private void FixedUpdate()
     {
         if (Keyboard.current.aKey.isPressed)
         {
@@ -19,7 +22,7 @@ public class Angular : MonoBehaviour
         }
         else
         {
-             rb.angularVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
     }
 }
