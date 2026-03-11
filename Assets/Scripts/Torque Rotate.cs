@@ -3,24 +3,21 @@ using UnityEngine.InputSystem;
 
 public class TorqueRotate : MonoBehaviour
 {
-    public float torqueAmount = 5f; 
-
+    public float angularSpeed = 5f;
     private Rigidbody rb;
-    
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    // Update is called once per frame
+    void FixedUpdate()
     {
+
         if (Keyboard.current.dKey.isPressed)
         {
-            rb.AddTorque(new Vector3(0, 0, torqueAmount));
+            rb.AddTorque(new Vector3(0, 0, angularSpeed));
         }
-        else
-        {
-            rb.angularVelocity = Vector3.zero;
-        }
+       
     }
 }
