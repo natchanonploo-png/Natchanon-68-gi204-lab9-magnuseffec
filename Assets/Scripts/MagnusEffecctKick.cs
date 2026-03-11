@@ -1,43 +1,38 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MagnusEffectKick : MonoBehaviour
+public class MagnusEffecctKick : MonoBehaviour
 {
-    public float kickForce = 20f;
-    public float spinAmount = 10f;
-    public float magnusStrength = 0.5f;
+    public float kickFroce;
+    public float spinAmount;
+    public float magnusStrength;
 
-    private Rigidbody rb;
-    private bool isShot = false;
-
+    Rigidbody rb;
+    bool isShot = false;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && !isShot)
-        {
-            rb.AddForce(Vector3.forward * kickForce, ForceMode.Impulse);
+        if (Keyboard.current .spaceKey.wasPressedThisFrame && ! isShot)
 
-            // ให้ลูกบอลหมุน
-            rb.AddTorque(Vector3.up * spinAmount, ForceMode.Impulse);
+        rb.AddForce(Vector3 .forward * kickFroce, ForceMode.Impulse);
 
-            isShot = true;
-        }
+        rb.AddTorque(Vector3.up * spinAmount);
+
+        isShot = true;
     }
-
     private void FixedUpdate()
     {
         if (!isShot) return;
-
         Vector3 velocity = rb.linearVelocity;
         Vector3 spin = rb.angularVelocity;
-
-        Vector3 magnusForce = magnusStrength * Vector3.Cross(spin, velocity);
-
-        rb.AddForce(magnusForce);
+        
+        Vector3 magnusFroce = magnusStrength * Vector3.Cross(spin, velocity);
+        rb.AddForce(magnusFroce);
+        
     }
-}
+}     
